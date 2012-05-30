@@ -1,3 +1,3 @@
 # Twiliomenu
 
-This project rocks and uses MIT-LICENSE.
+This documentation will be written soon.
