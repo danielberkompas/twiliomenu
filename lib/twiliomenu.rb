@@ -87,7 +87,7 @@ module Twiliomenu
     def process_twilio_response(twilio = nil)
       @twilio = twilio
       prepare_current_menu!
-      process_options(@twilio[:Digits]) if @twilio
+      process_options(@twilio[:Digits]) if @twilio[:Digits]
     end
 
     # Transitions the object to another menu
