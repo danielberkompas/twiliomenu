@@ -124,6 +124,17 @@ module Twiliomenu
       end
     end
 
+    # %w[gather record].each do |key|
+    #   define_method key do |options = {}, &block|
+    #     add_verb key.capitalize, nil, options
+    #     if block_given?
+    #       self.nest = true
+    #       instance_eval block.call
+    #       self.nest = false
+    #     end
+    #   end
+    # end
+
     # Equivalent of the <Gather> verb
     def gather(options = {})
       add_verb("Gather", nil, options)
@@ -144,25 +155,36 @@ module Twiliomenu
       end
     end
 
-    # Equivalent of the <Say> verb
-    def say(text, options = {})
-      add_verb("Say", text, options)
+    %w[say play dial number sms].each do |key|
+      define_method key do |text, options = {}|
+        add_verb key.capitalize, text, options
+      end
     end
+
+    # # Equivalent of the <Say> verb
+    # def say(text, options = {})
+    #   add_verb("Say", text, options)
+    # end
 
     # Equivalent of the <Play> verb
-    def play(url_to_file, options = {})
-      add_verb("Play", url_to_file, options)
-    end
+    # def play(url_to_file, options = {})
+    #   add_verb("Play", url_to_file, options)
+    # end
 
-    # Equivalent of the <Dial> verb
-    def dial(number = nil, options = {})
-      add_verb("Dial", number, options)
-    end
+    # # Equivalent of the <Dial> verb
+    # def dial(number = nil, options = {})
+    #   add_verb("Dial", number, options)
+    # end
 
-    # Equivalent of the <Number> verb
-    def number(number = nil, options = {})
-      add_verb("Number", number, options)
-    end
+    # # Equivalent of the <Number> verb
+    # def number(number = nil, options = {})
+    #   add_verb("Number", number, options)
+    # end
+
+    # # Equivalent of the <Sms> verb
+    # def sms(text_to_send, options = {})
+    #   add_verb("Sms", text_to_send, options)
+    # end
 
     # Useful for asking the user to make a decision, such as
     # "Press 1 to enter your zipcode."  It registers an option
