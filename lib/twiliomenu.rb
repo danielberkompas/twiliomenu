@@ -235,7 +235,6 @@ module Twiliomenu
     def process_options(digits)
       for expected_digits, settings in @options
         if digits.to_i == expected_digits.to_i
-          settings[:value] ||= nil
           self.__send__ settings[:callback], digits, settings[:value] if settings[:callback]
           transition_to(settings[:menu])
         end
