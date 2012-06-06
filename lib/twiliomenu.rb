@@ -212,13 +212,13 @@ module Twiliomenu
     # the transition to the options[:menu] and call the 
     # options[:callback] specified.
     # @param options (hash) - [:menu, :callback]
-    def press(number, options)
+    def press(number, options = {})
       register_option number, options
     end
 
     # Actually registers the an option.
     # @see #prompt, #press
-    def register_option(number, options)
+    def register_option(number, options = {})
       @options ||= []
       @options << [number, options]
     end
