@@ -155,7 +155,11 @@ module Twiliomenu
       end
     end
 
-    %w[say play dial number sms].each do |key|
+    def dial(number, options = {})
+      add_verb "Dial", number, options
+    end
+
+    %w[say play number sms].each do |key|
       define_method key do |text, options = {}|
         add_verb key.capitalize, text, options
       end
