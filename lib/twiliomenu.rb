@@ -54,7 +54,7 @@ module Twiliomenu
     # 
     # Theoretically, this allows for infinite nesting of verbs.
     def recursive_build(builder, verb)
-      allows_nesting = ["Gather", "Dial"]
+      allows_nesting = ["Gather"]
 
       # Recursively run through all of the nested verbs in each block
       if allows_nesting.include?( verb[:name] )
@@ -96,10 +96,6 @@ module Twiliomenu
       self.__send__ "menu_#{menu_name}"
     end
     
-    def dial(number, options = {})
-      add_verb "Dial", number, options
-    end
-
     private
 
     # Clears out the verbs and options array
@@ -160,7 +156,7 @@ module Twiliomenu
     end
 
 
-    %w[say play number sms].each do |key|
+    %w[say play dial number sms].each do |key|
       define_method key do |text, options = {}|
         add_verb key.capitalize, text, options
       end
