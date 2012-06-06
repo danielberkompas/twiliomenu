@@ -20,7 +20,7 @@ module Twiliomenu
             self.verbs = []
             self.options = []
             self.twilio = {}
-            self.send("menu_#{self.current_menu}")
+            # self.send("menu_#{self.current_menu}")
           end
         end
       end
