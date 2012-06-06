@@ -95,6 +95,10 @@ module Twiliomenu
       self.update_attribute(:current_menu, menu_name)
       self.__send__ "menu_#{menu_name}"
     end
+    
+    def dial(number, options = {})
+      add_verb "Dial", number, options
+    end
 
     private
 
@@ -155,9 +159,6 @@ module Twiliomenu
       end
     end
 
-    def dial(number, options = {})
-      add_verb "Dial", number, options
-    end
 
     %w[say play number sms].each do |key|
       define_method key do |text, options = {}|

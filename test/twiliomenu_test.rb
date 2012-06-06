@@ -62,6 +62,20 @@ describe Call do
         verb_must_be_present @call, verb
       end
 
+      it "should have a working dial verb" do
+        number = "555-555-555"
+        options = {}
+
+        verb = {
+          name: "Dial",
+          text: number,
+          options: options
+        }
+
+        @call.send :dial, number, options
+        verb_must_be_present @call, verb
+      end
+
     end
   end
 end
