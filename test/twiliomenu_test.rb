@@ -67,15 +67,52 @@ describe Call do
         options = {}
 
         verb = {
-          name: "Dial",
-          text: number,
-          options: options
+          name:     "Dial",
+          text:     number,
+          options:  options
         }
 
         @call.send :dial, number, options
         verb_must_be_present @call, verb
       end
 
+      describe "#prompt" do
+        it "should be able to add digits to the options array" do
+          digits      = 10
+          text_to_say = "string"
+          options     = { menu: :second_menu }
+
+          @call.send :prompt, digits, text_to_say, options
+          @call.options.last.must_equal [digits, options]
+        end
+
+        it "should be able to add regexes to the options array" do
+          regex       = /50/
+          text_to_say = "string"
+          options     = { menu: :second_menu }
+
+          @call.send :prompt, regex, text_to_say, options
+          @call.options.last.must_equal [regex, options]
+        end
+      end
+
+      describe "#process_options" do
+        it "should be able to process regexes" do
+          @call.current_menu.must_be :!=, :second_menu
+
+          # Where it matches
+          @call.options = [[/50/, {menu: :second_menu}]]
+          @call.send :process_options, "50"
+
+          @call.current_menu.must_equal :second_menu
+
+          # Where it doesn't match
+          @call.options = [[/50/, {menu: :third_menu}]]
+          @call.send :process_options, "6523"
+
+          @call.current_menu.must_be :!=, :third_menu
+        end
+      end
     end
   end
 end
