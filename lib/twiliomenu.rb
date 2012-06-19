@@ -145,20 +145,17 @@ module Twiliomenu
       end
     end
 
-    # Equivalent of the <Dial> verb
-    def dial(number = nil, options = {})
+    def dial_multiple(options = {})
+      add_verb("Dial", nil, options)
       if block_given?
-        add_verb("Dial", nil, options)
         self.nest = true
         yield
         self.nest = false
-      else
-        add_verb("Dial", number, options)
       end
     end
 
 
-    %w[say play number sms].each do |key|
+    %w[say dial play number sms].each do |key|
       define_method key do |text, options = {}|
         add_verb key.capitalize, text, options
       end

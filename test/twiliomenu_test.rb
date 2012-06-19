@@ -76,6 +76,11 @@ describe Call do
         verb_must_be_present @call, verb
       end
 
+      it "#dial_multiple should allow nesting of other verbs" do
+        @call.go_to_menu :dial_multiple
+        @call.verbs.last[:nested].size.must_be :>, 0
+      end
+
       describe "#prompt" do
         it "should be able to add digits to the options array" do
           digits      = 10

@@ -28,4 +28,12 @@ class Call < ActiveRecord::Base
     say "You have arrived at the fourth menu!"
   end
 
+  menu :dial_multiple do
+    dial_multiple do
+      2.times do
+        number "hello"
+      end
+    end
+  end
+
 end
