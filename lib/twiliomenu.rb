@@ -55,7 +55,7 @@ module Twiliomenu
     # 
     # Theoretically, this allows for infinite nesting of verbs.
     def recursive_build(builder, verb)
-      allows_nesting = ["Gather"]
+      allows_nesting = ["Gather", "Dial"]
 
       # Recursively run through all of the nested verbs in each block
       if allows_nesting.include?( verb[:name] )

@@ -1,3 +1,7 @@
+## Version 0.1.4
+**Bugfixes**
+* Added "Dial" to the list of verbs that are allowed to nest
+
 ## Version 0.1.3
 **New Features**
 * Added and tested the #dial_multiple verb.  This allows you to dial multiple numbers in your dial verb.
