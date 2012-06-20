@@ -1,3 +1,7 @@
+## Version 0.1.5
+**New Features**
+* Added the ability to process plain strings in options, like "*".  This allows you to use prompt for things like "*".
+
 ## Version 0.1.4
 **Bugfixes**
 * Added "Dial" to the list of verbs that are allowed to nest

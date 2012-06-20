@@ -212,6 +212,8 @@ module Twiliomenu
 
         if expected.is_a?(Regexp)
           match = true if digits.to_s.match(expected)
+        elsif expected.is_a?(String)
+          match = true if digits == expected
         else
           match = true if digits.to_i == expected.to_i
         end

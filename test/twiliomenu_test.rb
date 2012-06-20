@@ -99,6 +99,15 @@ describe Call do
           @call.send :prompt, regex, text_to_say, options
           @call.options.last.must_equal [regex, options]
         end
+
+        it "should be able to add strings to the options array" do
+          string      = "*"
+          text_to_say = "string"
+          options     = { menu: :third_menu }
+
+          @call.send :prompt, string, text_to_say, options
+          @call.options.last.must_equal [string, options]
+        end
       end
 
       describe "#process_options" do
@@ -116,6 +125,22 @@ describe Call do
           @call.send :process_options, "6523"
 
           @call.current_menu.must_be :!=, :third_menu
+        end
+
+        it "should be able to process strings" do
+          @call.current_menu.must_be :!=, :second_menu
+
+          # Where it matches
+          @call.options = [["*", {menu: :second_menu}]]
+          @call.send :process_options, "*"
+
+          @call.current_menu.must_equal :second_menu
+
+          # Where it doesn't match
+          @call.options = [["*", {menu: :third_menu}]]
+          @call.send :process_options, "6523"
+
+          @call.current_menu.must_be :!=, :third_menu          
         end
       end
     end
