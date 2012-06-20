@@ -1,3 +1,7 @@
+## Version 0.1.6
+**New Features**
+* Added the redirect verb
+
 ## Version 0.1.5
 **New Features**
 * Added the ability to process plain strings in options, like "*".  This allows you to use prompt for things like "*".

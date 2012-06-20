@@ -76,6 +76,17 @@ describe Call do
         verb_must_be_present @call, verb
       end
 
+      it "should have a working redirect verb" do
+        verb = {
+          name:     "Redirect",
+          text:     "/hello/there",
+          options:  {}
+        }
+
+        @call.send :redirect, verb[:text], verb[:options]
+        verb_must_be_present @call, verb
+      end
+
       it "#dial_multiple should allow nesting of other verbs" do
         @call.go_to_menu :dial_multiple
         @call.verbs.last[:nested].size.must_be :>, 0

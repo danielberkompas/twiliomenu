@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    twiliomenu (0.1.4)
+    twiliomenu (0.1.5)
       rails (~> 3.2.3)
       twilio-rb
 
