@@ -155,7 +155,7 @@ module Twiliomenu
     end
 
 
-    %w[say dial play number sms redirect].each do |key|
+    %w[say dial play number sms redirect pause].each do |key|
       define_method key do |text, options = {}|
         add_verb key.capitalize, text, options
       end
